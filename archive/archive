@@ -1,0 +1,58 @@
+
+
+
+#   
+#   user = service.people().get(userId='me').execute(http=http)
+# variables = {
+#     'url': decorator.authorize_url(),
+#     'has_credentials': decorator.has_credentials()
+# }
+# except client.AccessTokenRefreshError:
+#     self.response.write('YOU ARE NOT AUTHORISED!!!')
+# UserModel(
+#     credentials = decorator.credentials,
+#     user = users.get_current_user()
+# ).put()
+                # creds = client.OAuth2Credentials.from_json(data)
+                # logging.info(creds)
+                                # logging.info('Status of access token is %s', creds.credentials.access
+                                
+                                
+                                
+# class TestHandler(webapp2.RequestHandler):
+#     def get(self):
+#         creds = UserModel.query().fetch()
+#         for c in creds:
+#             logging.info(c.user)
+#             response = drive.files().list().execute(c.credentials.authorize(http))
+#             logging.info(response)
+#         self.response.write('attempting to access data')_token_expired)
+                # logging.info('Status of scopes is %s', creds.credentials.has_scopes(SCOPE))
+
+
+                
+        plaintext_bodies = mail_message.bodies('text/plain')
+        html_bodies = mail_message.bodies('text/html')
+
+        for content_type, body in html_bodies:
+            decoded_html = body.decode()
+
+        for content_type, body in plaintext_bodies:
+            plaintext = body.decode()
+
+        logging.info("Received a message from: " + mail_message.sender)
+        logging.info("Html body of length %d.", len(decoded_html))
+        logging.info("Plain text body of length %d.", len(plaintext))
+
+
+        
+
+ # or not creds.credentials.has_scopes(SCOPE)
+                # if(creds.credentials.access_token_expired):
+                #     logging.info('Access token: %s, Scopes: %s',
+                #                  creds.credentials.access_token_expired, creds.credentials.has_scopes(SCOPE))
+                #     # creds.credentials.revoke().execute()
+                #     self.response.write(
+                #         'your creds had expired, please sign in again')
+                #     creds.key.delete()
+                # else:mime = MimeTypes()

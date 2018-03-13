@@ -1,0 +1,25 @@
+<mat-card>
+  <mat-card-title>User List</mat-card-title>
+  <mat-card-content>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="nickname">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.user.nickname}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.user.email}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="approved">
+        <mat-header-cell *matHeaderCellDef> Approved </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.approved}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="domain">
+        <mat-header-cell *matHeaderCellDef> Domain </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.user.auth_domain}} </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

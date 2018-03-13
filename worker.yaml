@@ -1,0 +1,28 @@
+application: email-report-receiver
+version: 2
+runtime: python27
+api_version: 1
+threadsafe: true
+service: worker
+
+handlers:
+- url: /tasks/.*
+  script: server.worker.app
+  login: admin
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- node_modules/
+- src/
+- archive/
+- e2e/
+- dist/
+- tslint.json
+- tsconfig.json
+- README.md
+- karma.conf.js
+- protractor.conf.js

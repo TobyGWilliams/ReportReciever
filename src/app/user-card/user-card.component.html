@@ -1,0 +1,86 @@
+<mat-card>
+  <mat-card-title>Welcome</mat-card-title>
+  <mat-card-content>
+    <mat-horizontal-stepper #stepper linear *ngIf='currentUser' [(selectedIndex)]='stepperConfig.index'>
+      <ng-template matStepperIcon="edit">
+        <mat-icon style="padding-left:3px">done</mat-icon>
+      </ng-template>
+      <ng-template matStepperIcon="done">
+        <mat-icon>done</mat-icon>
+      </ng-template>
+      <mat-step label="Sign Up" [completed]="stepperConfig.status[0]">
+        <div *ngIf='currentUser.user'>
+          <p>Thank you for signing up, you are logged in as: {{currentUser.user.email}}</p>
+        </div>
+        <div *ngIf='!currentUser.user'>
+          <p>Please sign in to get started</p>
+          <button mat-raised-button color="primary" (click)="signIn()">Sign In</button>
+        </div>
+      </mat-step>
+      <mat-step label="Connect to Google Drive" [completed]="stepperConfig.status[1]">
+        <div *ngIf="!currentUser.userModel">
+          <p>Please connect to Google Drive</p>
+          <button mat-raised-button color="primary" (click)="provideCredentials()">Connect</button>
+        </div>
+        <div *ngIf="currentUser.userModel">
+          <p>You are connected to Google Drive</p>
+        </div>
+      </mat-step>
+      <mat-step label="Create Mappings" [completed]="stepperConfig.status[2]">
+        <p>Create mappings below to move received attachments to your Google Drive</p>
+      </mat-step>
+      <mat-step label="Schedule Emails" [completed]="stepperConfig.status[3]">
+        <p>Schedule reports in your applications</p>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+
+
+
+
+
+  <!-- <mat-card-content>
+    <p>Welcome to the email report receiver. This app will help you manage and direct files from scheduled reports into Google
+      Drive and Google Slides.</p>
+    <p>Enabling this process takes several steps:</p>
+    <ul>
+      <li>Sign in to this application</li>
+      <li>Provide authorisation to create files in your Google Drive</li>
+      <li>Create a mapping from a particular email profile to a folder location in your Google Drive</li>
+      <li>Schedule emails to your elected email address</li>
+    </ul>
+    <p>Then each time this application receives a matching email, it will process the attachments into your elected Google Drive.</p>
+    <h3>Your Profile:</h3>
+    <!-- <div *ngIf="!loaded" class="center-content">
+      <mat-spinner></mat-spinner>
+    </div> -->
+  <!-- <div *ngIf="loaded">
+    <div *ngIf='currentUser.user'>
+      <p>You are signed in as:</p>
+      <ul>
+        <li>Nickname: {{currentUser.user.nickname}}</li>
+        <li>Email: {{currentUser.user.email}}</li>
+      </ul>
+      <div>
+        <div *ngIf='currentUser.userModel'>
+          <p>You have stored your credentials. When matching email arrive, the attachments will be place in your Google Drive</p>
+        </div>
+      </div>
+      <div *ngIf="!currentUser.userModel">
+        <p>Your credentials aren't stored, please provide your credentials</p>
+      </div>
+
+    </div>
+    <div *ngIf='!currentUser.user'>
+      <p>You are not signed in! Please sign in</p>
+    </div>
+  </div> -->
+
+  <!-- </mat-card-content>  -->
+  <!-- <mat-card-actions *ngIf="loaded">
+    <button *ngIf="!currentUser.user" mat-raised-button color="primary" (click)="signIn()">Sign In</button>
+    <div *ngIf='currentUser.user'>
+      <button *ngIf="!currentUser.userModel" mat-raised-button color="primary" (click)="provideCredentials()">Provide Credentials</button>
+    </div>
+  </mat-card-actions> -->
+</mat-card>

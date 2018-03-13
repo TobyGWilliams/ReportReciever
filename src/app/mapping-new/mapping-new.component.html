@@ -1,0 +1,32 @@
+<h1 mat-dialog-title>Create new mapping</h1>
+  <div class="container">
+      <span class="mat-typography section-title">Incoming Email</span>
+      <p class="mat-typography">Use the controls below to select which emails will be processed by this mapping.</p>
+      <mat-form-field hintLabel="Leave blank to ignore" class="full-width">
+        <input matInput  [(ngModel)]="mapping.senderEmail" placeholder="Sender Email Address">
+      </mat-form-field>
+      <mat-form-field hintLabel="Madatory" class="full-width">
+        <input matInput [(ngModel)]="mapping.emailPrefix" placeholder="Email Prefix">
+      </mat-form-field>
+      <mat-checkbox style="padding-top:0.5em;" [(ngModel)]="mapping.renameFile">Rename file to email title?</mat-checkbox>
+  </div>
+
+  <div class="container">
+      <span class="mat-typography section-title">Dropbox Location</span>
+      <p class="mat-typography">Identify where in Google Drive to move attachments to.</p>
+      <div *ngIf="!mapping.folder.selected">
+        <button mat-button (click)="onApiLoad()" mat-raised-button color="primary">
+            <i class="material-icons">folder</i>Google Drive</button>
+      </div>
+      <div *ngIf="mapping.folder.selected">
+          <button mat-button (click)="openDriveFolder()" mat-raised-button color="accent">
+              <i class="material-icons">folder</i>{{mapping.folder.name}}</button>
+      </div>
+  </div>
+
+  
+  <mat-dialog-actions>
+    <span class="fill-remaining-space"></span>
+    <button mat-button mat-raised-button color="primary" (click)="createMapping()">Save</button>
+    <button mat-button mat-raised-button color="primary"mat-dialog-close>Close</button>
+  </mat-dialog-actions> 

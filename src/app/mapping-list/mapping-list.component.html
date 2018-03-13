@@ -1,0 +1,56 @@
+<mat-card>
+  <mat-card-title>Mapping List</mat-card-title>
+  <!-- <div class="container mat-elevation-z8"> -->
+  <mat-card-content class="container">
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="folderName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Google Drive Folder </mat-header-cell>
+        <mat-cell *matCellDef="let mapping"> {{mapping.folder.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="renameFile">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="center-content"> Rename attachment </mat-header-cell>
+        <mat-cell *matCellDef="let mapping" class="center-content">
+          <mat-icon *ngIf="mapping.renameFile">check_box</mat-icon>
+          <mat-icon *ngIf="!mapping.renameFile">check_box_outline_blank</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="emailPrefix">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Address prefix </mat-header-cell>
+        <mat-cell *matCellDef="let mapping"> {{mapping.emailPrefix}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="sender">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Sender </mat-header-cell>
+        <mat-cell *matCellDef="let mapping"> {{mapping.sender}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="created">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="center-content"> Created </mat-header-cell>
+        <mat-cell *matCellDef="let mapping" class="center-content"> {{mapping.created | date:'yyyy-MM-dd HH:mm'}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="edit" class="center-content">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="center-content"> Action </mat-header-cell>
+        <mat-cell *matCellDef="let mapping" class="center-content">
+          <button mat-icon-button color="accent">
+            <mat-icon>build</mat-icon>
+          </button>
+          <button mat-icon-button color="accent">
+            <mat-icon (click)="deleteMapping(mapping)">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="active">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="center-content"> Active </mat-header-cell>
+        <mat-cell *matCellDef="let mapping" class="center-content">
+          <mat-icon *ngIf="mapping.active">check_box</mat-icon>
+          <mat-icon *ngIf="!mapping.active">check_box_outline_blank</mat-icon>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+      <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+  </mat-card-content>
+  <!-- </div> -->
+  <mat-card-actions>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button color="primary" (click)="openMappingNew()">New Mapping</button>
+  </mat-card-actions>
+</mat-card>
